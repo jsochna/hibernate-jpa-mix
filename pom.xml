@@ -12,9 +12,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
-		<spring.version>4.0.3.RELEASE</spring.version>
-		<hibernate.version>4.3.5.Final</hibernate.version>
-		<slf4j.version>1.6.1</slf4j.version>
+		<spring.version>5.1.0.RELEASE</spring.version>
+		<hibernate.version>5.3.6.Final</hibernate.version>
+		<slf4j.version>1.7.25</slf4j.version>
 	</properties>
 
 	<dependencies>
@@ -68,7 +68,8 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.9</version>
+			<version>4.12</version>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- The tutorials use the H2 in-memory database -->
@@ -79,18 +80,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.microsoft.sqlserver.jdbc</groupId>
-			<artifactId>sqljdbc</artifactId>
-			<version>1.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache-core</artifactId>
 			<version>2.5.2</version>
-			<scope>compile</scope>
 		</dependency>
-
 
 
 		<!-- Spring -->
@@ -98,56 +91,51 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
-			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 			<version>${spring.version}</version>
-			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
-			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
-			<type>jar</type>
-			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 			<version>${spring.version}</version>
-			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>1.6.10</version>
-			<type>jar</type>
-			<scope>compile</scope>
+			<version>1.8.10</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.6.10</version>
-			<type>jar</type>
-			<scope>compile</scope>
+			<version>1.8.10</version>
 		</dependency>
         <dependency>
             <groupId>javax.inject</groupId>
@@ -176,10 +164,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.1</version>
+				<version>3.6.1</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
                 </configuration>
             </plugin>
 
