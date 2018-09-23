@@ -2,6 +2,7 @@ package com.test.dao;
 
 import com.test.domain.Person;
 import com.test.domain.util.GENDER;
+import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -77,6 +78,18 @@ public class PersonDAOTest {
 
         assertCorrectNumberOfPeter(personList);
 
+    }
+
+    @Test
+    public void testReadPersonByPositionalAndNamedArgumentJPA() {
+        List<Person> personList = personDAO.readPersonPositionalAndNamedArgumentJPA("First", "Last");
+        assertThat(personList.size(), CoreMatchers.is(2));
+    }
+
+    @Test
+    public void testReadPersonByPositionalAndNamedArgumentHibernate() {
+        List<Person> personList = personDAO.readPersonPositionalAndNamedArgumentHibernate("First", "Last");
+        assertThat(personList.size(), CoreMatchers.is(2));
     }
 
     @Test

@@ -1,17 +1,22 @@
 package com.test.dao;
 
+import com.querydsl.jpa.JPQLQuery;
+import com.querydsl.jpa.hibernate.HibernateQuery;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.test.domain.Person;
 import com.test.domain.Person_;
-import com.test.domain.Pet;
+import com.test.domain.QPerson;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.*;
-import javax.persistence.metamodel.EntityType;
-import javax.persistence.metamodel.Metamodel;
-import javax.transaction.Transactional;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
@@ -20,16 +25,18 @@ public class PersonDAO {
     @PersistenceContext(name="test")
     private EntityManager entityManager;
 
+    @Autowired
+    private SessionFactory sessionFactory;
 
+
+    @Transactional(readOnly = true)
     public List<Person> readPersonByFirstNameUsingNativeQuery(String firstName) {
 
         Query q = entityManager.createNativeQuery("SELECT * FROM person WHERE firstname = :firstname", Person.class);
         q.setParameter("firstname", firstName);
 
-        List<Person> result = q.getResultList();
-
-        return result;
-
+       List<Person> result = q.getResultList();
+       return result;
     }
 
     public List<Person> readPersonByFirstNameUsingHQL(String firstName) {
@@ -38,7 +45,6 @@ public class PersonDAO {
         q.setParameter("firstName", firstName);
 
         List<Person> result = q.getResultList();
-
         return result;
 
     }
@@ -48,7 +54,6 @@ public class PersonDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Person> cq = cb.createQuery(Person.class);
         Root<Person> root = cq.from(Person.class);
-//        ListJoin<Person, Pet> itemNode = root.join(Person_.pets);
         cq.where( cb.equal(root.get(Person_.firstName), firstName ) );
 
         return entityManager.createQuery(cq).getResultList();
@@ -65,4 +70,23 @@ public class PersonDAO {
 
     }
 
+    @Transactional(readOnly = true)
+    public List<Person> readPersonPositionalAndNamedArgumentJPA(String first, String last) {
+        QPerson person = QPerson.person;
+        JPAQuery<Person> query = new JPAQuery<Person>(entityManager)
+                .from(person)
+                .where(person.firstName.eq(first)
+                        .and(person.lastName.eq(last)));
+        return query.fetch();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Person> readPersonPositionalAndNamedArgumentHibernate(String first, String last) {
+        QPerson person = QPerson.person;
+        JPQLQuery<Person> query = new HibernateQuery<Person>(sessionFactory.getCurrentSession())
+                .from(person)
+                .where(person.firstName.eq(first)
+                        .and(person.lastName.eq(last)));
+        return query.fetch();
+    }
 }
