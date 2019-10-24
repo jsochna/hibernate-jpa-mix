@@ -2,7 +2,7 @@ package com.test.dao;
 
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.hibernate.HibernateQuery;
-import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.test.domain.Person;
 import com.test.domain.Person_;
 import com.test.domain.QPerson;
@@ -73,8 +73,8 @@ public class PersonDAO {
     @Transactional(readOnly = true)
     public List<Person> readPersonPositionalAndNamedArgumentJPA(String first, String last) {
         QPerson person = QPerson.person;
-        JPAQuery<Person> query = new JPAQuery<Person>(entityManager)
-                .from(person)
+        JPQLQuery<Person> query = new JPAQueryFactory(entityManager)
+                .selectFrom(person)
                 .where(person.firstName.eq(first)
                         .and(person.lastName.eq(last)));
         return query.fetch();

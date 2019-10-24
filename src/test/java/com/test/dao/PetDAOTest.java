@@ -68,8 +68,8 @@ public class PetDAOTest {
     @Test
     public void testNumberOfPetsPerOwner() {
 
-        List<Person> owners = personDAO.readPersonByFirstNameUsingHQL(originalPets.get(0).getOwner().getFirstName());
-        assertEquals(2, owners.get(0).getPets().size());
+        Person owner = personDAO.readPersonById(originalPets.get(0).getOwner().getId());
+        assertEquals(2, owner.getPets().size());
 
     }
 

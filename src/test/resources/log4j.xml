@@ -13,6 +13,10 @@
 		<priority value="debug" />
 	</category>
 
+	<category name="org.hibernate.type">
+		<priority value="trace" />
+	</category>
+
 	<root>
 		<priority value="warn"/>
 		<appender-ref ref="stdout"/>

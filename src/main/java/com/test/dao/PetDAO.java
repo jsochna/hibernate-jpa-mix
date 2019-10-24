@@ -4,18 +4,21 @@ import com.test.domain.Person;
 import com.test.domain.Pet;
 import com.test.domain.Pet_;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.*;
-import javax.transaction.Transactional;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
 public class PetDAO {
 
-    @PersistenceContext(name="test")
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Transactional
@@ -53,7 +56,7 @@ public class PetDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Pet> cq = cb.createQuery(Pet.class);
         Root<Pet> root = cq.from(Pet.class);
-//        Join<Pet, Person> personNode = root.join(Pet_.owner);
+        Join<Pet, Person> personNode = root.join(Pet_.owner);
         cq.where( cb.equal(root.get(Pet_.owner), owner ) );
 
 
