@@ -8,15 +8,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import javax.inject.Inject;
 
 import java.util.Date;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:testContext.xml"})
+@ContextConfiguration(locations = {"classpath:testContext.xml"})
 public class PersonDAOTest {
 
     @Inject
@@ -65,7 +67,7 @@ public class PersonDAOTest {
     }
 
     @Test
-    public void testReadPersonByFirstNameUsingNativeQuery() throws Exception {
+    public void testReadPersonByFirstNameUsingNativeQuery() {
         List<Person> personList = personDAO.readPersonByFirstNameUsingNativeQuery("Peter");
 
         assertCorrectNumberOfPeter(personList);
@@ -102,7 +104,8 @@ public class PersonDAOTest {
 
     @Test
     public void testReadPersonById() {
-        Person person = personDAO.readPersonById(0);
+        Person person = personDAO.readPersonById(1);
+        assertNotNull(person);
     }
 
     private void assertCorrectNumberOfPeter(List<Person> personList) {

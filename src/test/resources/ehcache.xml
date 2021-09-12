@@ -12,6 +12,6 @@
             diskExpiryThreadIntervalSeconds="120"
             memoryStoreEvictionPolicy="LRU"/>
 
-     <cache name="com.test.domain.Site" maxElementsInMemory="1000"/>
+    <cache name="com.test.domain.Site" maxElementsInMemory="1000"/>
 
 </ehcache>

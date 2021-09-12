@@ -20,7 +20,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:testContext.xml"})
+@ContextConfiguration(locations = {"classpath:testContext.xml"})
 public class PetDAOTest {
 
     private List<Pet> originalPets = new LinkedList<>();

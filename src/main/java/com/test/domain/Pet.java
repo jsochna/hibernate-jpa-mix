@@ -3,18 +3,18 @@ package com.test.domain;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorColumn(name="race", length = 1, discriminatorType= DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "race", length = 1, discriminatorType = DiscriminatorType.STRING)
 public abstract class Pet {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int id;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
     private Person owner;
 
-    @Column(insertable=false, updatable=false)
+    @Column(insertable = false, updatable = false)
     public String race;
 
     public String name;

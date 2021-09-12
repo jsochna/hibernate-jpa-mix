@@ -3,7 +3,7 @@ package com.test.domain;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorValue("C")
 public class Cat extends Pet {
 

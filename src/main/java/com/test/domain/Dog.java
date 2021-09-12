@@ -3,9 +3,9 @@ package com.test.domain;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorValue("D")
-public class Dog extends Pet{
+public class Dog extends Pet {
 
     private boolean friendly;
 

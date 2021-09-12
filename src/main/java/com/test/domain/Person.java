@@ -1,6 +1,7 @@
 package com.test.domain;
 
 import com.test.domain.util.GENDER;
+
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,8 +11,8 @@ import java.util.List;
 public class Person {
 
     @Id
-    @Column(name="person_id")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "person_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String firstName;
@@ -20,7 +21,7 @@ public class Person {
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
-    @Column(insertable=false, updatable=false, unique=true)
+    @Column(insertable = false, updatable = false, unique = true)
 //    @Formula("concat(firstName, ' ', lastName)")
 //    @Formula("concat(' ', ' ')")
     private String name;
@@ -99,7 +100,8 @@ public class Person {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         if (id != person.id) return false;
-        if (dateOfBirth != null ? !sdf.format(dateOfBirth).equals(sdf.format(person.dateOfBirth)) : person.dateOfBirth != null) return false;
+        if (dateOfBirth != null ? !sdf.format(dateOfBirth).equals(sdf.format(person.dateOfBirth)) : person.dateOfBirth != null)
+            return false;
         if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null) return false;
         if (gender != person.gender) return false;
         if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null) return false;

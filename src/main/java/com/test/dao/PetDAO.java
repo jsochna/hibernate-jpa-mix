@@ -36,7 +36,6 @@ public class PetDAO {
         return q.getResultList();
 
 
-
     }
 
     public List<Pet> readPetByOwner(Person owner) {
@@ -57,7 +56,7 @@ public class PetDAO {
         CriteriaQuery<Pet> cq = cb.createQuery(Pet.class);
         Root<Pet> root = cq.from(Pet.class);
         Join<Pet, Person> personNode = root.join(Pet_.owner);
-        cq.where( cb.equal(root.get(Pet_.owner), owner ) );
+        cq.where(cb.equal(root.get(Pet_.owner), owner));
 
 
         return entityManager.createQuery(cq).getResultList();

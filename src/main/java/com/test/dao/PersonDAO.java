@@ -22,7 +22,7 @@ import java.util.List;
 @Repository
 public class PersonDAO {
 
-    @PersistenceContext(name="test")
+    @PersistenceContext(name = "test")
     private EntityManager entityManager;
 
     @Autowired
@@ -35,8 +35,8 @@ public class PersonDAO {
         Query q = entityManager.createNativeQuery("SELECT * FROM person WHERE firstname = :firstname", Person.class);
         q.setParameter("firstname", firstName);
 
-       List<Person> result = q.getResultList();
-       return result;
+        List<Person> result = q.getResultList();
+        return result;
     }
 
     public List<Person> readPersonByFirstNameUsingHQL(String firstName) {
@@ -54,7 +54,7 @@ public class PersonDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Person> cq = cb.createQuery(Person.class);
         Root<Person> root = cq.from(Person.class);
-        cq.where( cb.equal(root.get(Person_.firstName), firstName ) );
+        cq.where(cb.equal(root.get(Person_.firstName), firstName));
 
         return entityManager.createQuery(cq).getResultList();
     }

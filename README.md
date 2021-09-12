@@ -1,29 +1,9 @@
 hibernate-example
 =================
+Cloned from https://github.com/szantopeter/hibernate-example
 
-This is a JPA 2 Example application, using Hibernate as the persistence provider. It demonstrates the use of the following technologies : 
+Goal is to demonstrate 
+* flaw in querydsl hibernate binding that was resolved in querydsl JPA binding 
+* simplicity of conversion from hibernate to JPA binding with newer Hibernate since QueryDSL wasn't maintained at that time.
 
-- HSQL in memory DB
-- Hibernate 4.0
-	- Database generation from entities
-	- @Formula
-	- @Cacheable
-	- @Cache
-- JPA 2.1
-	- @JoinColumn
-	- @OneToMany
-	- @ManyToOne
-	- @Id
-	- @Column
-	- @GeneratedValue
-	- @Entity
-	- @NamedQuery
-	- @Transactional
-	- @Converter
-	- @DiscriminatorColumn
-- EHCache
-
-
-To start the project run :
-
-    mvn clean install
+**Bottom line**: the bug was resolved with newer QueryDSL
