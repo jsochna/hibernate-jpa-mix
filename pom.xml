@@ -12,10 +12,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
-		<spring.version>5.1.0.RELEASE</spring.version>
-		<hibernate.version>5.3.6.Final</hibernate.version>
+		<spring.version>5.3.9</spring.version>
+		<hibernate.version>5.5.7.Final</hibernate.version>
 		<slf4j.version>1.7.25</slf4j.version>
-		<querydsl.version>4.1.4</querydsl.version>
+		<querydsl.version>5.0.0</querydsl.version>
 	</properties>
 
 	<dependencies>
@@ -167,25 +167,9 @@
 			<version>2.1</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-jpamodelgen</artifactId>
-			<version>${hibernate.version}</version>
-		</dependency>
-
-
 	</dependencies>
     <dependencyManagement>
         <dependencies>
-<!--
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-releasetrain</artifactId>
-                <version>Lovelace-GA</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
--->
         </dependencies>
     </dependencyManagement>
     <repositories>
@@ -237,8 +221,10 @@
                         </goals>
                         <configuration>
                             <outputDirectory>target/generated-sources/java</outputDirectory>
-                            <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
-<!--                            <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>-->
+							<processors>
+								<processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+								<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+							</processors>
                         </configuration>
                     </execution>
                 </executions>
