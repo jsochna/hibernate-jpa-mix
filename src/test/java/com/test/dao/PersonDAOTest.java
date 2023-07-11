@@ -2,7 +2,6 @@ package com.test.dao;
 
 import com.test.domain.Person;
 import com.test.domain.util.GENDER;
-import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,12 +9,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
-
 import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.hasSize;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:testContext.xml"})
@@ -85,13 +85,13 @@ public class PersonDAOTest {
     @Test
     public void testReadPersonByPositionalAndNamedArgumentJPA() {
         List<Person> personList = personDAO.readPersonPositionalAndNamedArgumentJPA("First", "Last");
-        assertThat(personList.size(), CoreMatchers.is(2));
+        assertThat(personList, hasSize(2));
     }
 
     @Test
     public void testReadPersonByPositionalAndNamedArgumentHibernate() {
         List<Person> personList = personDAO.readPersonPositionalAndNamedArgumentHibernate("First", "Last");
-        assertThat(personList.size(), CoreMatchers.is(2));
+        assertThat(personList, hasSize(2));
     }
 
     @Test
